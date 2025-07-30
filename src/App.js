@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Project from './pages/Project';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <header className="header">
+          <h1>Portfolio</h1>
+          <Navbar />
+        </header>
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/project" element={<Project />} />
+          </Routes>
+        </main>
+
+        <footer className="footer">
+          <p>&copy; 2025 My Simple Portfolio. All rights reserved.</p>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
