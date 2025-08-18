@@ -4,22 +4,6 @@
 }
 
 
-.about-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  
-}
-
-.image-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #dee1dd 100%);
-}
 
 .about-text {
   padding: 2rem;

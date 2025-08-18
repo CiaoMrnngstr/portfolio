@@ -42,8 +42,9 @@ function Home() {
       </div>
 
       <div className="home-links">
-        <a href="/project" className="btn">Projects</a>
         <a href="/contact" className="btn">Contact</a>
+        {/* 📄 Download CV Button */}
+        <a href="/cv.pdf" download className="btn">📄 Download CV</a>
       </div>
     </div>
   );

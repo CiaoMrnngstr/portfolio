@@ -11,10 +11,9 @@ function App() {
     <Router>
       <div className="app-container">
         <header className="header">
-          <h1>Portfolio</h1>
+          <h1>My Portfolio</h1>
           <Navbar />
         </header>
-
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -23,7 +22,6 @@ function App() {
             <Route path="/project" element={<Project />} />
           </Routes>
         </main>
-
         <footer className="footer">
           <p>&copy; 2025 My Simple Portfolio. All rights reserved.</p>
         </footer>
