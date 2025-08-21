@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.contact-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+  color: #000;
+  text-align: center;
+}
+
+.contact-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.contact-container p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.contact-info {
+  margin: 1.5rem 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.contact-info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+/* Social icons */
+.social-icons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #000; /* Default black */
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.icon:hover {
+  color: #fff;
+  background: #000;
+  border-radius: 50%;
+  padding: 0.5rem;
+}

@@ -1,136 +1,143 @@
-/* Ensure full height for layout */
-html, body, #root {
-  height: 100%;
-  overflow-x: hidden;
-}
-
-/* App layout wrapper */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  
-}
-
-/* Main content takes available space */
-.main-content {
-  flex: 1;
-  max-width: 1600px;
-  margin: 2rem auto;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 13px rgba(1,1,0,1.1);
-}
-
-
-
-/* Header styles */
-
+/* Header styling */
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eaeaea;
-  
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-
-
-.header img {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-}
-
-.header h1 {
-  font-size: 30px;
-  margin: 0;
-  color: rgb(58, 58, 58);
-  white-space: nowrap;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
+.logo {
+  font-size: 24px;
 }
 
 .navbar a {
-  color: rgb(0, 0, 0);
+  margin-left: 20px;
   text-decoration: none;
-  margin-left: 2rem;
-  font-weight: 500;
+  color: white;
   transition: color 0.2s;
 }
+
 .navbar a:hover {
-  color: #c3c3c3;
+  color: #808080;
 }
 
-/* Body reset */
-body {
-  background: #ffffff;
-  font-family: 'Segoe UI', Arial, sans-serif;
+/* Hamburger button */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  width: 28px;
+  height: 22px;
+  position: relative;
+  z-index: 1001;
+  background: none;
+  border: none;
 }
 
-/* Home layout styles */
-.home-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.home-text {
-  flex: 1;
-}
-.home-image {
-  flex: 1;
-  text-align: right;
-}
-.home-image img {
-  width: 200px;
-  border-radius: 50%;
-}
-
-/* Page section spacing */
-.page-section {
-  margin-bottom: 2rem;
-}
-
-/* Footer at bottom of page only */
-.footer {
+.hamburger span {
+  display: block;
+  height: 3px;
   width: 100%;
-  padding: 1rem 0;
-  text-align: center;
-  background: #000000;
-  color: white;
-  margin-top: auto;
+  background: white;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Optional: Sticky top header style */
-.App-header {
-  height: 60px;
-  width: 80px;
-  display: flex;
-  align-items: center;
-  background-color: #131921;
-  position: sticky;
+.hamburger span:nth-child(1) {
   top: 0;
-  z-index: 100;
+}
+.hamburger span:nth-child(2) {
+  top: 9px;
+}
+.hamburger span:nth-child(3) {
+  bottom: 0;
 }
 
-.App-headerLogo {
-  width: 80px;
-  height: 60px;
-  object-fit: contain;
-  margin: 0 20px;
-  margin-top: 18px;
+/* Animate into X when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+
+/* Overlay background */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* Sidebar menu */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: #222; /* match header */
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.4);
+  padding: 4rem 2rem;
+  transform: translateX(100%);  /* fully hidden */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0); /* slide in */
+}
+
+
+.mobile-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-sidebar li {
+  margin-bottom: 1.8rem;
+}
+
+.mobile-sidebar .nav-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-sidebar .nav-link:hover {
+  color: #818181;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .navbar {
+    display: none; /* hide desktop nav */
+  }
+  .hamburger {
+    display: block; /* show hamburger */
+  }
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* pushes footer to bottom */
 }

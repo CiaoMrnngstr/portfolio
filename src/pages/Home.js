@@ -11,24 +11,21 @@ import pyIcon from '../assets/icons/py.png';
 function Home() {
   return (
     <div className="home-container">
+      {/* Intro Card */}
       <div className="intro-card">
         <img src={profileImage} alt="My Profile" className="profile-img" />
         <div className="intro-text">
-          <h2>Hi, I'm Jebzter Catacutan</h2>
-          <p>Web Dev Student at PHINMA Araullo University</p>
-          <a href="/project" className="btn">View Projects</a>
+          <h2>Hi, I'm <span className="highlight">Jebzter Catacutan</span></h2>
+          <p>Aspiring Full-Stack Developer | Sys Dev Student</p>
+          <div className="intro-buttons">
+            <a href="/project" className="btn">🚀 View Projects</a>
+            <a href="/contact" className="btn">📩 Contact Me</a>
+            <a href="/cv.pdf" download className="btn">📄 Download CV</a>
+          </div>
         </div>
       </div>
 
-      <div className="bio">
-        <p>
-          I’m currently pursuing a Bachelor of Science in Information Technology,
-          majoring in System Development. I enjoy building clean, functional,
-          and responsive websites using modern technologies. I'm passionate about building responsive and user-friendly websites using React, HTML, and CSS.
-          This portfolio is a showcase of the projects I've built while learning and growing as a developer.
-        </p>
-      </div>
-
+      {/* Tech Stack Snapshot */}
       <div className="skills">
         <h3>Tech Stack</h3>
         <div className="skills-icons">
@@ -39,12 +36,6 @@ function Home() {
           <img src={javaIcon} alt="Java" />
           <img src={pyIcon} alt="Python" />
         </div>
-      </div>
-
-      <div className="home-links">
-        <a href="/contact" className="btn">Contact</a>
-        {/* 📄 Download CV Button */}
-        <a href="/cv.pdf" download className="btn">📄 Download CV</a>
       </div>
     </div>
   );
