@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         {/* Header */}
         <header className="header">
-          <h1 className="logo">My Portfolio</h1>
+          <h1 className="logo">Ciao</h1>
 
           {/* Desktop Navbar */}
           <nav className="navbar">
