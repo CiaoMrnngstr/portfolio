@@ -1,3 +1,21 @@
+# Ciao — Jebzter Catacutan’s portfolio
+
+A responsive React portfolio with dark/light themes, four preserved/featured projects, a full-color tech stack, and an accessible contact form.
+
+- Start: `npm ci` then `npm start`
+- Build for Vercel: `npm run build` (output: `build`)
+- Tests: `CI=true npm test -- --watchAll=false --runInBand`
+- Project data: `src/data/projects.js`
+- Profile and social URLs: `src/data/profile.js`
+- [Redesign details, configuration, and verification](REDESIGN.md)
+- [Latest portrait, resume, Bitulok links, and running preview](PORTFOLIO_UPDATE.md)
+
+No new application dependencies were added. The React / Create React App structure is retained.
+
+---
+
+## Original Create React App documentation
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

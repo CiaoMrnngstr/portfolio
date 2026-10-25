@@ -1,67 +1,157 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0e16;
+  --surface: #111620;
+  --surface-raised: #181e2c;
+  --surface-glass: rgba(17, 22, 32, 0.8);
+  --text: #f3f5fc;
+  --muted: #a2adc2;
+  --faint: #8b97ae;
+  --line: #283045;
+  --line-soft: rgba(156, 177, 220, 0.12);
+  --accent: #aaa5ff;
+  --cyan: #77ddeb;
+  --gradient: linear-gradient(110deg, #aaa5ff 10%, #77ddeb 90%);
+  --button-gradient: linear-gradient(110deg, #6450d8, #245d93);
+  --header: rgba(11, 14, 22, 0.82);
+  --shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  --glow: rgba(102, 86, 221, 0.12);
+  --success: #8be0b3;
+  --error: #ffa6ab;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --radius: 20px;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: "Space Grotesk", "Inter", sans-serif;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f5f7fc;
+  --surface: #fff;
+  --surface-raised: #ecf0f9;
+  --surface-glass: rgba(255, 255, 255, 0.85);
+  --text: #162039;
+  --muted: #526078;
+  --faint: #59677f;
+  --line: #c9d1e3;
+  --line-soft: rgba(46, 66, 106, 0.14);
+  --accent: #5945b8;
+  --cyan: #126778;
+  --gradient: linear-gradient(110deg, #6745c0 10%, #096c80 90%);
+  --header: rgba(245, 247, 252, 0.88);
+  --shadow: 0 16px 48px rgba(28, 43, 78, 0.07);
+  --glow: rgba(102, 86, 221, 0.07);
+  --success: #196943;
+  --error: #b22434;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button,
+input,
+textarea {
+  font: inherit;
 }
-
-.contact-container {
-  max-width: 800px;
-  margin: auto;
-  padding: 2rem;
-  background: #fff;
-  color: #000;
-  text-align: center;
+button,
+a,
+input,
+textarea,
+summary {
+  -webkit-tap-highlight-color: transparent;
 }
-
-.contact-container h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #000;
+button,
+summary {
+  cursor: pointer;
 }
-
-.contact-container p {
-  font-size: 1rem;
-  color: #333;
-  margin: 0.5rem 0;
-}
-
-.contact-info {
-  margin: 1.5rem 0;
-  text-align: left;
-  display: inline-block;
-}
-
-.contact-info p {
-  margin: 0.3rem 0;
-  font-size: 1rem;
-}
-
-/* Social icons */
-.social-icons {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-}
-
-.icon {
-  font-size: 2rem;
-  color: #000; /* Default black */
-  transition: all 0.3s;
+a {
+  color: inherit;
   text-decoration: none;
 }
-
-.icon:hover {
-  color: #fff;
-  background: #000;
-  border-radius: 50%;
-  padding: 0.5rem;
+button {
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+svg {
+  flex-shrink: 0;
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+::selection {
+  background: #7d6df3;
+  color: white;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+[tabindex="-1"]:focus {
+  outline: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal.reveal-ready {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
