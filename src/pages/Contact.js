@@ -94,7 +94,7 @@ export default function Contact({ formEndpoint = endpoint }) {
                 {profile.location}
               </span>
             </div>
-            <a href={`tel:${profile.phone}`}>
+            <a href={`tel:${profile.phone.replace(/\s/g, "")}`}>
               <span className="contact-icon">
                 <Phone size={19} aria-hidden="true" />
               </span>

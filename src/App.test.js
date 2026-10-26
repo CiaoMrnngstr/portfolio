@@ -42,7 +42,9 @@ test("preserves all original projects, galleries, downloads, and personal inform
   expect(
     screen.getByRole("link", { name: /Download Android App/ }),
   ).toHaveAttribute("href", "/myapp.apk");
-  expect(screen.getByText(profile.location)).toBeInTheDocument();
+  expect(
+    screen.getAllByText(new RegExp(profile.location)).length,
+  ).toBeGreaterThanOrEqual(4);
   expect(screen.getByText(profile.phone)).toBeInTheDocument();
 });
 

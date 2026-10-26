@@ -42,6 +42,33 @@
 .hero-topline .mono {
   font-size: 8px;
 }
+.internship-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface-glass);
+  color: var(--text);
+}
+.status-dot.internship-dot {
+  width: 7px;
+  height: 7px;
+  margin: 0;
+  flex-shrink: 0;
+  background: #53d799;
+  animation: internship-pulse 2.8s ease-out infinite;
+}
+@keyframes internship-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(83, 215, 153, 0.25);
+  }
+  65% {
+    box-shadow: 0 0 0 6px rgba(83, 215, 153, 0);
+  }
+}
 .hero-grid {
   display: grid;
   gap: 5px;
@@ -71,6 +98,33 @@
   width: 100%;
   height: 100%;
   aspect-ratio: 1;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 7px solid var(--bg);
+  isolation: isolate;
+}
+.portrait-ring picture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    transparent 48%,
+    rgba(11, 14, 22, 0.16) 80%,
+    rgba(11, 14, 22, 0.48) 100%
+  );
+  box-shadow: inset 0 -18px 30px rgba(11, 14, 22, 0.22);
+  pointer-events: none;
+}
+:root[data-theme="light"] .portrait-ring picture::after {
+  background: radial-gradient(
+    circle at center,
+    transparent 62%,
+    rgba(62, 78, 115, 0.12) 100%
+  );
+  box-shadow: inset 0 -10px 22px rgba(62, 78, 115, 0.09);
 }
 .portrait-ring img {
   width: 100%;
@@ -78,7 +132,8 @@
   object-fit: cover;
   object-position: center 26%;
   border-radius: 50%;
-  border: 7px solid var(--bg);
+  transform: scale(1.1);
+  transform-origin: center 36%;
 }
 .portrait-orbit {
   position: absolute;
@@ -109,7 +164,8 @@
 }
 .portrait-label {
   position: absolute;
-  background: var(--surface-glass);
+  /* Keep small proof text readable even when the glass overlaps the white photo. */
+  background: rgba(17, 22, 32, 0.94);
   border: 1px solid var(--line);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow);
@@ -118,14 +174,18 @@
   align-items: center;
   gap: 11px;
   line-height: 1.6;
+  animation: float 8s ease-in-out infinite;
+}
+:root[data-theme="light"] .portrait-label {
+  background: rgba(255, 255, 255, 0.94);
 }
 .label-code {
   left: 0;
-  bottom: 20%;
+  bottom: 10%;
   font-size: 9px;
   padding: 12px 15px;
   color: var(--muted);
-  transform: rotate(-5deg);
+  rotate: -5deg;
 }
 .label-code svg {
   color: var(--accent);
@@ -139,7 +199,8 @@
   top: 17%;
   padding: 10px 12px;
   font-size: 9px;
-  transform: rotate(5deg);
+  rotate: 5deg;
+  animation-delay: -4s;
 }
 .label-student svg {
   color: var(--cyan);

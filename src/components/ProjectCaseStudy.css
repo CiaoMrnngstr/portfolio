@@ -1,0 +1,41 @@
+.project-case-study {
+  display: grid;
+  gap: 22px;
+  margin-block: 22px;
+}
+.project-case-study .case-study-label {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.project-case-study section h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.project-case-study section p,
+.project-case-study li {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+.project-case-study ul {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+  padding-left: 16px;
+  list-style: disc;
+}
+.case-study-learning {
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.placeholder-label {
+  display: block;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 5px;
+}

@@ -23,7 +23,29 @@ export const projects = [
       "A delivery platform connecting Admin, Restaurant, Customer, and Rider in one ecosystem. My capstone project brings web and mobile together, powered by Firebase.",
     story:
       "Admin and Restaurant web apps are built with Vite; Customer and Rider mobile apps are built with Expo. The backend uses Firebase: Firestore, Cloud Functions, and Hosting.",
-    tech: ["Vite", "Expo", "Firebase", "Firestore", "Cloud Functions"],
+    tech: [
+      "React",
+      "React Native",
+      "Node.js",
+      "Vite",
+      "Expo",
+      "Firebase",
+      "Firestore",
+      "Cloud Functions",
+    ],
+    caseStudy: {
+      overview:
+        "I built Bitulok Express as the sole developer for my capstone project: a food and goods delivery platform for Gabaldon, Nueva Ecija, with four roles — Admin, Restaurant, Customer, and Rider.",
+      features: [
+        "Account management and restaurant menus",
+        "Checkout, order processing, and COD and QR Ph payments",
+        "Rider assignment and delivery tracking",
+        "Admin monitoring",
+      ],
+      stack:
+        "React web dashboards and React Native mobile apps, with Node.js and Firebase (Firestore). Vite powers the Admin and Restaurant web apps; Expo powers the Customer and Rider mobile apps. Firebase also provides Cloud Functions and Hosting.",
+      learning: null,
+    },
     liveUrl: null,
     githubUrl: null,
     links: [
@@ -58,6 +80,7 @@ export const projects = [
         downloadName: "bitulok-rider.apk",
       },
     ],
+    // Add approved screenshots as { src, alt }; the gallery stays hidden while empty.
     images: [],
   },
   {

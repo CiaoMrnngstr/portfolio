@@ -11,6 +11,11 @@
   max-width: 450px;
   line-height: 1.9;
 }
+.about-location {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 14px;
+}
 .stats {
   display: grid;
   grid-template-columns: 1fr 1.3fr 1fr;

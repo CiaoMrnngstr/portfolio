@@ -1,6 +1,6 @@
 import { ArrowUp } from "lucide-react";
 import SocialLinks from "./SocialLinks";
-import { navigation } from "../data/profile";
+import { navigation, profile } from "../data/profile";
 import "./Footer.css";
 
 export default function Footer() {
@@ -13,6 +13,7 @@ export default function Footer() {
               Ciao<span>.</span>
             </a>
             <p>Thoughtful code. Meaningful experiences.</p>
+            <p>BSIT Student · {profile.location}</p>
           </div>
           <nav aria-label="Footer navigation">
             {navigation.map(({ id, label }) => (

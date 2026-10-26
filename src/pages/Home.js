@@ -58,9 +58,9 @@ export default function Home() {
       <div className="hero-mesh" aria-hidden="true" />
       <div className="container">
         <div className="hero-topline">
-          <span>
-            <span className="status-dot" />
-            Learning. Building. Evolving.
+          <span className="internship-status">
+            <span className="status-dot internship-dot" aria-hidden="true" />
+            Open to IT internship opportunities
           </span>
           <span className="mono">PORTFOLIO / 2026</span>
         </div>
@@ -82,14 +82,14 @@ export default function Home() {
             <div className="portrait-label label-code">
               <Code2 size={21} aria-hidden="true" />
               <span>
-                Turning ideas
+                Solo-built Bitulok Express:
                 <br />
-                <strong>into experiences.</strong>
+                <strong>4 apps, 1 developer</strong>
               </span>
             </div>
             <div className="portrait-label label-student">
               <Sparkles size={17} aria-hidden="true" />
-              Always a student.
+              React · Node.js · Firebase
             </div>
             <span className="portrait-plus plus-one" aria-hidden="true">
               +
@@ -99,7 +99,7 @@ export default function Home() {
             </span>
             <div className="portrait-location">
               <MapPin size={13} aria-hidden="true" />
-              Bongabon, Philippines
+              {profile.location}
             </div>
           </div>
           <div className="hero-copy">
@@ -112,16 +112,14 @@ export default function Home() {
             </h1>
             <TypingTagline />
             <p className="hero-intro">
-              I turn curiosity into code, building thoughtful web and mobile
-              experiences that solve real-world problems.
+              BSIT student building full-stack web and mobile apps. Sole
+              developer of Bitulok Express, a delivery platform for Gabaldon,
+              Nueva Ecija.
             </p>
             <div className="hero-buttons">
               <a className="button button-primary" href="#projects">
                 View Projects
                 <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-              <a className="button button-secondary" href="#contact">
-                Contact Me
               </a>
               <a
                 className="button button-outline"

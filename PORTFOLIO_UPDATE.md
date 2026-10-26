@@ -1,5 +1,7 @@
 # Portrait, resume, and Bitulok access update
 
+> Historical update notes. The current resume/contact/SEO values and checks are in [POLISH_V2.md](POLISH_V2.md).
+
 Updated on 26 October 2026 on the local `redesign` branch in `/private/tmp/ciao-portfolio-redesign`. The supplied `/CiaoMrnngstr/portfolio` path does not exist on this machine. The earlier redesign was still uncommitted, so this branch includes that work plus these updates. No push, Firebase deployment, or Vercel deployment was performed. `main` remains at `2768ff54877abc084d64a236c3e48b62a4b19f10`.
 
 ## Source files used
@@ -11,7 +13,7 @@ Both supplied files were found with the exact names requested:
 
 The optimized portrait is 800×1067: WebP **47,462 bytes**, JPEG fallback **72,863 bytes**. The circular hero uses `object-fit: cover` with `object-position: center 26%`, keeping white space above the hair, the gradient ring, and float animation. The OG image uses the same new portrait. The About section has no photo, and the favicon/app icons use the Ciao brand mark, so those did not need a portrait replacement. The two unused previous portrait assets were removed after checking references.
 
-The CV URL is `/cv.pdf?v=6bd7cb9db426` and the browser download filename is `Jebzter_Catacutan_Resume.pdf`. Its SHA-256 is:
+The CV URL is `/cv.pdf?v=983b3da0202d` and the browser download filename is `Jebzter_Catacutan_Resume.pdf`. The original update’s SHA-256 (superseded by polish-v2) was:
 
 ```text
 6bd7cb9db4264997039d4a5bdbba144780f927debaa66b7673a655eaa5f9e3c6

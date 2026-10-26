@@ -8,7 +8,8 @@ A responsive React portfolio with dark/light themes, four preserved/featured pro
 - Project data: `src/data/projects.js`
 - Profile and social URLs: `src/data/profile.js`
 - [Redesign details, configuration, and verification](REDESIGN.md)
-- [Latest portrait, resume, Bitulok links, and running preview](PORTFOLIO_UPDATE.md)
+- [Portrait, resume, and Bitulok access update](PORTFOLIO_UPDATE.md)
+- [Current polish-v2 changes and verification](POLISH_V2.md)
 
 No new application dependencies were added. The React / Create React App structure is retained.
 

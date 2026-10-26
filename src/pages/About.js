@@ -8,6 +8,7 @@ import {
 import SectionHeading from "../components/SectionHeading";
 import { projects } from "../data/projects";
 import { technologies } from "../data/technologies";
+import { profile } from "../data/profile";
 import "./About.css";
 
 const highlights = [
@@ -59,6 +60,9 @@ export default function About() {
             <p className="about-intro reveal">
               I'm Jebzter Catacutan, an aspiring web developer who enjoys
               building clean, responsive, and user-friendly websites.
+            </p>
+            <p className="about-location reveal">
+              BSIT Student · {profile.location}
             </p>
             <div className="stats reveal">
               <div>

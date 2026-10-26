@@ -102,7 +102,7 @@ export default function Navbar({ activeSection }) {
           Ciao<span>.</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
-          {links}
+          {links.filter((link) => link.key !== "contact")}
         </nav>
         <div className="header-actions">
           <button
@@ -117,8 +117,12 @@ export default function Navbar({ activeSection }) {
               <Moon size={19} aria-hidden="true" />
             )}
           </button>
-          <a className="header-contact" href="#contact">
-            Let's talk <ArrowUpRight size={15} aria-hidden="true" />
+          <a
+            className="header-contact"
+            href="#contact"
+            aria-current={activeSection === "contact" ? "location" : undefined}
+          >
+            Contact <ArrowUpRight size={15} aria-hidden="true" />
           </a>
           <button
             className="icon-button menu-toggle"

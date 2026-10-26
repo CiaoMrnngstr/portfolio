@@ -84,7 +84,7 @@ This is a public form URL, not a secret API key. Success appears only after an H
 - The supplied internship resume is at `public/cv.pdf`, linked through a content-versioned `profile.cv` URL and downloaded as `Jebzter_Catacutan_Resume.pdf`.
 - Existing social links, email, location, and phone are already configured in `src/data/profile.js`. No replacement is required unless those details change.
 - Existing screenshots and photo are included; Bitulok screenshots are optional.
-- Once you choose the final production domain, make `og:image` and `twitter:image` absolute URLs in `public/index.html` (e.g. your domain plus `/og-image.png`) and add matching `og:url` and canonical URL tags. A domain was not invented.
+- The production domain `https://portfolio-ten-brown-30.vercel.app` now supplies the absolute OG/Twitter image URLs, `og:url`, and canonical tag in `public/index.html`. See `POLISH_V2.md` for current metadata and resume details.
 - Vercel should retain the Create React App framework preset, `npm run build`, and `build` output directory. Existing assets and downloads are not intercepted by the explicit page rewrites.
 
 ## Verification

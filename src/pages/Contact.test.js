@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import Contact from "./Contact";
 
 function fillForm() {
@@ -37,5 +43,32 @@ test("keeps the entered message and re-enables submission after a failed service
   );
   await waitFor(() =>
     expect(screen.getByRole("button", { name: "Send Message" })).toBeEnabled(),
+  );
+});
+
+test("shows a busy state and preserves text while a submission is pending", async () => {
+  let resolve;
+  global.fetch = jest.fn(
+    () =>
+      new Promise((done) => {
+        resolve = done;
+      }),
+  );
+  render(<Contact formEndpoint="https://formspree.io/f/test" />);
+  fillForm();
+  fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
+  expect(screen.getByRole("button", { name: "Sending…" })).toBeDisabled();
+  expect(screen.getByRole("form", { name: "Contact form" })).toHaveAttribute(
+    "aria-busy",
+    "true",
+  );
+  expect(screen.getByLabelText(/Your message/)).toHaveValue(
+    "A meaningful project enquiry.",
+  );
+  await act(async () => {
+    resolve({ ok: false });
+  });
+  expect(screen.getByLabelText(/Your message/)).toHaveValue(
+    "A meaningful project enquiry.",
   );
 });

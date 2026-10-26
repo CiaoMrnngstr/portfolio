@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import DeliveryPreview from "./DeliveryPreview";
 import ProjectAccess from "./ProjectAccess";
+import ProjectCaseStudy from "./ProjectCaseStudy";
 
 function ProjectLink({ href, label, Icon, title, projectTitle }) {
   return href ? (
@@ -126,11 +127,12 @@ export default function ProjectCard({ project, index }) {
         >
           <summary>
             {project.featured
-              ? "Explore the architecture"
+              ? "Case study & architecture"
               : "Project story & screenshots"}
             <ChevronDown size={15} aria-hidden="true" />
           </summary>
           <p>{project.story}</p>
+          {expanded && <ProjectCaseStudy study={project.caseStudy} />}
           {expanded && project.links?.length > 0 && (
             <ProjectAccess project={project} detail />
           )}
