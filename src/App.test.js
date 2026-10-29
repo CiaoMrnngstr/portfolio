@@ -43,6 +43,15 @@ test("keeps the CV route and filename, removes the phone, and protects TESDA", (
   expect(document.querySelector(".tesda-qualification").querySelector("img,a,button,iframe,embed,object")).toBeNull();
 });
 
+test("keeps the hero portrait meaningful, intrinsic, and inside its editorial frame", () => {
+  render(<App />);
+  const portrait = screen.getByRole("img", { name: /Jebzter Catacutan.*white studio background/i });
+  expect(portrait).toHaveAttribute("width", "640");
+  expect(portrait).toHaveAttribute("height", "854");
+  expect(portrait).toHaveAttribute("decoding", "async");
+  expect(portrait.closest(".portrait-photo-frame")).not.toBeNull();
+});
+
 test("searches the command palette and opens a project with the keyboard", () => {
   render(<App />);
   fireEvent.keyDown(document, { key: "k", ctrlKey: true });
