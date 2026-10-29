@@ -37,10 +37,12 @@ test("preserves all original projects, galleries, downloads, and personal inform
       .filter((project) => ["phinma", "pmcca", "kicks"].includes(project.id))
       .map((project) => project.images.length),
   ).toEqual([4, 4, 4]);
-  expect(screen.getByRole("link", { name: /Download CV/ })).toHaveAttribute(
+  const cvLink = screen.getByRole("link", { name: /Download CV/ });
+  expect(cvLink).toHaveAttribute(
     "href",
     "/cv.pdf",
   );
+  expect(cvLink).toHaveAttribute("download", "Jebzter_Catacutan_cv.pdf");
   expect(
     screen.getByRole("link", { name: /Download APK/ }),
   ).toHaveAttribute("href", "/myapp.apk");

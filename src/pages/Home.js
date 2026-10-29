@@ -120,7 +120,11 @@ export default function Home() {
               <a className="button button-secondary" href="#contact">
                 Contact Me
               </a>
-              <a className="button button-outline" href={profile.cv} download>
+              <a
+                className="button button-outline"
+                href={profile.cv}
+                download="Jebzter_Catacutan_cv.pdf"
+              >
                 Download CV
                 <Download size={16} aria-hidden="true" />
               </a>
