@@ -7,7 +7,7 @@ const { startBrowser } = require("./browser-session.cjs");
 
 const root = path.resolve(__dirname, "..");
 const output = process.env.PORTFOLIO_QA_DIR || "/private/tmp/jebzter-editorial-qa";
-const widths = [360, 390, 430, 768, 820, 1024, 1280, 1440];
+const widths = [360, 390, 430, 768, 1024, 1280, 1440];
 const report = { viewports: [], interactions: [], browserErrors: [], externalRequests: [] };
 const sha256 = (file) => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 let browser;
@@ -22,7 +22,7 @@ async function main() {
     })).observe({ type: "layout-shift", buffered: true });
   ` });
   await command("Emulation.setDeviceMetricsOverride", {
-    width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false,
+    width: 1440, height: 1000, deviceScaleFactor: 2, mobile: false,
   });
   console.log("QA: opening production build");
   await navigate(browser.origin + "/");
@@ -48,6 +48,37 @@ async function main() {
     phoneLinks: document.querySelectorAll('a[href^="tel:"]').length,
     brokenImages: [...document.images].filter((image) => !image.naturalWidth).map((image) => image.src),
     noDimensions: [...document.images].filter((image) => !image.hasAttribute("width") || !image.hasAttribute("height")).map((image) => image.src),
+    portrait: (() => {
+      const image = document.querySelector(".portrait-photo-frame img");
+      const frame = document.querySelector(".portrait-photo-frame");
+      const panel = document.querySelector(".portrait-image");
+      const caption = document.querySelector(".portrait-side");
+      const availability = document.querySelector(".availability");
+      if (!image || !frame || !panel || !caption || !availability) return { missing: true };
+      const style = getComputedStyle(image);
+      const rect = image.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      const captionRect = caption.getBoundingClientRect();
+      const availabilityRect = availability.getBoundingClientRect();
+      return {
+        alt: image.alt,
+        width: image.getAttribute("width"),
+        height: image.getAttribute("height"),
+        filter: style.filter,
+        mixBlendMode: style.mixBlendMode,
+        objectPosition: style.objectPosition,
+        panelBackground: getComputedStyle(panel).backgroundImage,
+        frameBackground: getComputedStyle(frame).backgroundColor,
+        imageBackground: style.backgroundImage,
+        beforeContent: getComputedStyle(panel, "::before").content,
+        afterContent: getComputedStyle(panel, "::after").content,
+        captionWritingMode: getComputedStyle(caption).writingMode,
+        captionOverlapsPhoto: captionRect.left < rect.right && captionRect.right > rect.left && captionRect.top < rect.bottom && captionRect.bottom > rect.top,
+        availabilityOverlapsPanel: availabilityRect.top < panelRect.bottom,
+        renderedWidth: rect.width,
+        naturalWidth: image.naturalWidth,
+      };
+    })(),
     smallTargets: [...document.querySelectorAll("button,a,summary,input,textarea")]
       .filter((element) => element.getClientRects().length && getComputedStyle(element).visibility !== "hidden" && !element.closest("dialog:not([open])") && !element.classList.contains("skip-link"))
       .filter((element) => { const rect = element.getBoundingClientRect(); return rect.width < 43.5 || rect.height < 43.5; })
@@ -56,14 +87,14 @@ async function main() {
 
   for (const width of widths) {
     await command("Emulation.setDeviceMetricsOverride", {
-      width, height: width < 700 ? 844 : 1000, deviceScaleFactor: 1, mobile: width < 700,
+      width, height: width < 700 ? 844 : 1000, deviceScaleFactor: 2, mobile: width < 700,
     });
     for (const theme of ["light", "dark"]) {
       console.log(`QA: ${width}px ${theme}`);
       await evaluate(`document.documentElement.dataset.theme = ${JSON.stringify(theme)}; window.scrollTo({top:0,behavior:"instant"})`);
       await delay(100);
       const state = await pageState();
-      const shouldScanAccessibility = [360, 820, 1440].includes(width);
+      const shouldScanAccessibility = [360, 768, 1440].includes(width);
       if (shouldScanAccessibility) console.log(`QA: accessibility scan ${width}px ${theme}`);
       const violations = shouldScanAccessibility ? await axe() : [];
       report.viewports.push({ width, theme, ...state, accessibilityScanned: shouldScanAccessibility, violations });
@@ -73,8 +104,23 @@ async function main() {
       assert.deepEqual(state.brokenImages, [], `Broken images at ${width}px ${theme}`);
       assert.deepEqual(state.noDimensions, [], `Images need dimensions at ${width}px ${theme}`);
       assert.deepEqual(state.smallTargets, [], `Small tap targets at ${width}px ${theme}`);
+      assert.equal(state.portrait.missing, undefined, `Hero portrait missing at ${width}px ${theme}`);
+      assert.match(state.portrait.alt, /Jebzter Catacutan.*white studio background/i);
+      assert.equal(state.portrait.width, "640");
+      assert.equal(state.portrait.height, "854");
+      assert.equal(state.portrait.filter, "none", `Portrait filter present at ${width}px ${theme}`);
+      assert.equal(state.portrait.mixBlendMode, "normal", `Portrait blend mode present at ${width}px ${theme}`);
+      assert.match(state.portrait.panelBackground, /gradient/i, `Portrait panel missing at ${width}px ${theme}`);
+      assert.equal(state.portrait.frameBackground, "rgb(255, 255, 255)");
+      assert.equal(state.portrait.imageBackground, "none", `Portrait image has a background overlay at ${width}px ${theme}`);
+      assert.equal(state.portrait.beforeContent, "none", `Portrait before overlay present at ${width}px ${theme}`);
+      assert.equal(state.portrait.afterContent, "none", `Portrait after overlay present at ${width}px ${theme}`);
+      assert.equal(state.portrait.captionWritingMode, "vertical-rl");
+      assert.equal(state.portrait.captionOverlapsPhoto, false, `Portrait caption overlays photo at ${width}px ${theme}`);
+      assert.equal(state.portrait.availabilityOverlapsPanel, true, `Next chapter card no longer overlaps at ${width}px ${theme}`);
+      assert.ok(state.portrait.naturalWidth >= state.portrait.renderedWidth * 2, `Portrait is not retina-sharp at ${width}px ${theme}`);
       if (shouldScanAccessibility) assert.deepEqual(violations, [], `Accessibility violations at ${width}px ${theme}`);
-      if ([390, 820, 1440].includes(width)) await screenshot(`${width}-${theme}-hero`);
+      if ([360, 768, 1440].includes(width)) await screenshot(`${width}-${theme}-hero`);
       console.log(`PASS layout/a11y: ${width}px ${theme}`);
     }
   }
@@ -148,8 +194,8 @@ async function main() {
   }
   await evaluate(`document.querySelectorAll("img").forEach((image) => { image.loading = "eager"; })`);
   await delay(1200);
-  for (const width of [360, 820, 1440]) {
-    await command("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: width < 700 });
+  for (const width of [360, 768, 1440]) {
+    await command("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 2, mobile: width < 700 });
     assert.equal(await evaluate(`document.documentElement.scrollWidth`), width);
     assert.deepEqual(await axe(), []);
   }

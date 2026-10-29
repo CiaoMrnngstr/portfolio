@@ -68,7 +68,12 @@ function Hero() {
     </div>
     <div className="hero-portrait">
       <div className="portrait-topline mono"><span>Meet the developer</span><span>↙</span></div>
-      <div className="portrait-image"><img src={portrait} alt="Jebzter Catacutan wearing a dark suit and tie" width="640" height="854" fetchPriority="high" decoding="async" /><span className="portrait-side mono">Curiosity is a good starting point.</span></div>
+      <div className="portrait-image">
+        <div className="portrait-photo-frame">
+          <img src={portrait} alt="Jebzter Catacutan wearing a dark suit and tie against a white studio background" width="640" height="854" fetchPriority="high" decoding="async" />
+        </div>
+        <span className="portrait-side mono">Curiosity is a good starting point.</span>
+      </div>
       <div className="availability"><span className="availability-dot" aria-hidden="true" /><div><span className="mono">The next chapter</span><p>Open to IT internship<br />opportunities</p></div><ArrowUpRight size={25} aria-hidden="true" /></div>
     </div>
     <div className="hero-footnote mono"><span>Based in Cabanatuan, Philippines</span><span>Designed with intention. Built with curiosity.</span><a href="#projects" aria-label="Scroll to selected work"><ArrowDown size={18} aria-hidden="true" /></a></div>
