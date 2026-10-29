@@ -69,9 +69,9 @@ export default function Home() {
             <div className="portrait-ring">
               <img
                 src={profileImage}
-                width="512"
-                height="768"
-                alt="Jebzter Catacutan wearing a black suit and tie"
+                width="640"
+                height="854"
+                alt="Jebzter Catacutan"
                 fetchPriority="high"
               />
             </div>
