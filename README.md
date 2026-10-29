@@ -1,6 +1,6 @@
 # Ciao — Jebzter Catacutan’s portfolio
 
-A responsive React portfolio with dark/light themes, four preserved/featured projects, a full-color tech stack, and an accessible contact form.
+A responsive React portfolio with dark/light themes, five projects, a grouped development toolkit, five certifications, and an accessible contact form. TESDA is text-only; only Oracle and Cisco certificates have image previews.
 
 - Start: `npm ci` then `npm start`
 - Build for Vercel: `npm run build` (output: `build`)
@@ -8,6 +8,8 @@ A responsive React portfolio with dark/light themes, four preserved/featured pro
 - Project data: `src/data/projects.js`
 - Profile and social URLs: `src/data/profile.js`
 - [Redesign details, configuration, and verification](REDESIGN.md)
+- [Latest CV update, asset sources, privacy checks, and QA](PORTFOLIO_UPDATE.md)
+- Browser QA: build first, then `node scripts/verify-portfolio.cjs` (macOS with Google Chrome; artifacts go to `/private/tmp/portfolio-qa`).
 
 No new application dependencies were added. The React / Create React App structure is retained.
 

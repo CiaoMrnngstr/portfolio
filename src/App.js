@@ -6,7 +6,9 @@ import About from "./pages/About";
 import TechStack from "./components/TechStack";
 import Projects from "./pages/Project";
 import Contact from "./pages/Contact";
+import Certifications from "./components/Certifications";
 import "./App.css";
+import "./Portfolio.css";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -32,7 +34,7 @@ export default function App() {
           .filter((section) => section.getBoundingClientRect().top <= 180)
           .pop();
         setActiveSection(
-          current?.id === "tech-stack" ? "about" : current?.id || "home",
+          current?.id || "home",
         );
       });
     };
@@ -70,6 +72,7 @@ export default function App() {
         <About />
         <TechStack />
         <Projects />
+        <Certifications />
         <Contact />
       </main>
       <Footer />

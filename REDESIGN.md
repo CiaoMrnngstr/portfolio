@@ -1,5 +1,7 @@
 # Portfolio redesign — 26 October 2026
 
+This is the historical redesign report. See [the October 29 update](PORTFOLIO_UPDATE.md) for current content, assets, and verification.
+
 ## Source and preservation
 
 The supplied `/CiaoMrnngstr/portfolio` directory did not exist on this host. Work was completed in `/private/tmp/ciao-portfolio-redesign`, cloned from `https://github.com/CiaoMrnngstr/portfolio.git` at `2768ff54877abc084d64a236c3e48b62a4b19f10`. No GitHub push or Vercel deployment was performed.
@@ -69,7 +71,7 @@ Edit `src/data/projects.js`. Every project object contains its title, categories
 
 ### Contact
 
-The default form works without configuration: it validates the fields and creates an encoded `mailto:jebzterc@gmail.com` draft. The visitor must click **Open email draft**, review it, and send it in their email app. Draft creation never claims that a message was delivered. A direct email fallback remains available.
+The default form works without configuration: it validates the fields and creates an encoded email draft using the current address in `src/data/profile.js`. The visitor must click **Open email draft**, review it, and send it in their email app. Draft creation never claims that a message was delivered. A direct email fallback remains available.
 
 For direct sending, create a form in Formspree and copy its public endpoint. Add this environment variable to Vercel and redeploy (or put it in `.env.local` and restart locally):
 

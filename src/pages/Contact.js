@@ -61,7 +61,7 @@ export default function Contact({ formEndpoint = endpoint }) {
       <div className="container contact-grid">
         <div>
           <SectionHeading
-            number="04"
+            number="05"
             eyebrow="Get in touch"
             title={
               <>
@@ -72,7 +72,8 @@ export default function Contact({ formEndpoint = endpoint }) {
             }
           />
           <p className="contact-intro">
-            I'd love to connect! Feel free to reach out or follow me online.
+            Looking for an IT intern or have a project in mind? I'd love to
+            hear about your team and how I could contribute.
           </p>
           <div className="contact-info">
             <a href={`mailto:${profile.email}`}>
@@ -94,7 +95,7 @@ export default function Contact({ formEndpoint = endpoint }) {
                 {profile.location}
               </span>
             </div>
-            <a href={`tel:${profile.phone}`}>
+            <a href={profile.phoneHref}>
               <span className="contact-icon">
                 <Phone size={19} aria-hidden="true" />
               </span>

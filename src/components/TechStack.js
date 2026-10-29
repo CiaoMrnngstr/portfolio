@@ -7,7 +7,7 @@ import {
   SiMysql,
   SiVite,
 } from "react-icons/si";
-import { Code2, Database, Wrench } from "lucide-react";
+import { Code2, Database, Wrench, Braces, Globe, Github, MapPin, Mail, Server } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { technologies } from "../data/technologies";
 import "./TechStack.css";
@@ -19,11 +19,19 @@ const icons = {
   php: SiPhp,
   mysql: SiMysql,
   vite: SiVite,
+  database: Database,
+  github: Github,
+  code: Code2,
+  map: MapPin,
+  mail: Mail,
+  server: Server,
 };
 const groups = [
+  { name: "Languages", detail: "The foundations", Icon: Braces },
   { name: "Frontend", detail: "The experience", Icon: Code2 },
   { name: "Backend", detail: "Under the hood", Icon: Database },
   { name: "Tools", detail: "The workflow", Icon: Wrench },
+  { name: "APIs & Services", detail: "Connected apps", Icon: Globe },
 ];
 export default function TechStack() {
   return (
@@ -66,7 +74,6 @@ export default function TechStack() {
                       <li
                         key={tech.name}
                         className="tech-item"
-                        tabIndex={0}
                         aria-label={tech.name}
                       >
                         <span className="tech-icon">

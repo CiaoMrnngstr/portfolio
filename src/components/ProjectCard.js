@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import DeliveryPreview from "./DeliveryPreview";
+import ImageGallery from "./ImageGallery";
 
 function ProjectLink({ href, label, Icon, title, projectTitle }) {
   if (!href) return null;
@@ -32,11 +33,11 @@ export default function ProjectCard({ project, index }) {
   const [expanded, setExpanded] = useState(false);
   return (
     <article
-      className={`project-card${project.featured ? " featured-project" : ""}`}
+      className={`project-card${project.featured ? " featured-project" : ""}${project.id === "fitness-tracker" ? " fitness-project" : ""}`}
       style={{ "--card-delay": `${index * 55}ms` }}
       aria-labelledby={`project-${project.id}`}
     >
-      <div className={`project-thumbnail thumbnail-${project.id}`}>
+      {project.id !== "fitness-tracker" && <div className={`project-thumbnail thumbnail-${project.id}`}>
         {project.images.length ? (
           <img
             src={project.images[0].src}
@@ -57,7 +58,7 @@ export default function ProjectCard({ project, index }) {
         {!project.featured && (
           <span className="thumbnail-category">{project.categories[0]}</span>
         )}
-      </div>
+      </div>}
       <div className="project-content">
         {project.featured && (
           <div className="featured-label">
@@ -75,6 +76,7 @@ export default function ProjectCard({ project, index }) {
           <p className="project-subtitle">{project.subtitle}</p>
         )}
         <p className="project-description">{project.description}</p>
+        <p className="project-meta"><span>{project.date}</span><span>{project.role}</span></p>
         <ul className="tech-badges" aria-label="Built with">
           {project.tech.map((tech) => (
             <li key={tech}>{tech}</li>
@@ -114,30 +116,12 @@ export default function ProjectCard({ project, index }) {
             <ChevronDown size={15} aria-hidden="true" />
           </summary>
           <p>{project.story}</p>
-          {expanded && project.images.length > 0 && (
-            <div className="project-gallery">
-              {project.images.map((image) => (
-                <a
-                  key={image.src}
-                  href={image.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Enlarge ${image.alt} (opens in a new tab)`}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width="480"
-                    height="300"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </a>
-              ))}
-            </div>
-          )}
+          {project.context && <p>{project.context}</p>}
+          {project.features && <ul className="feature-list">{project.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>}
+          {expanded && project.images.length > 0 && project.id !== "fitness-tracker" && <ImageGallery images={project.images} title={project.title} />}
         </details>
       </div>
+      {project.id === "fitness-tracker" && <ImageGallery images={project.images} title={project.title} phones />}
     </article>
   );
 }

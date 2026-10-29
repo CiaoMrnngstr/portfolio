@@ -16,7 +16,7 @@ test("rejects whitespace-only fields and malformed email addresses", () => {
 });
 
 test("encodes the complete email draft without losing special characters", () => {
-  const url = new URL(createMailto(values, "jebzterc@gmail.com"));
+  const url = new URL(createMailto(values, "cjebzter@gmail.com"));
   expect(url.searchParams.get("subject")).toBe(
     "Portfolio enquiry from Visitor & Co",
   );

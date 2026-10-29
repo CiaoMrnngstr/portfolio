@@ -59,7 +59,7 @@ export default function Home() {
         <div className="hero-topline">
           <span>
             <span className="status-dot" />
-            Learning. Building. Evolving.
+            Open to IT internship opportunities
           </span>
           <span className="mono">PORTFOLIO / 2026</span>
         </div>
@@ -95,7 +95,7 @@ export default function Home() {
             </span>
             <div className="portrait-location">
               <MapPin size={13} aria-hidden="true" />
-              Bongabon, Philippines
+              {profile.location}
             </div>
           </div>
           <div className="hero-copy">
@@ -108,8 +108,9 @@ export default function Home() {
             </h1>
             <TypingTagline />
             <p className="hero-intro">
-              I turn curiosity into code, building thoughtful web and mobile
-              experiences that solve real-world problems.
+              I build thoughtful web and mobile experiences with React,
+              React Native, and Firebase. A fourth-year IT student ready to
+              contribute, learn, and turn real problems into working software.
             </p>
             <div className="hero-buttons">
               <a className="button button-primary" href="#projects">

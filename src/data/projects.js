@@ -11,8 +11,8 @@ import pmccaSignup from "../assets/optimized/pmcca-signup.webp";
 import pmccaList from "../assets/optimized/pmcca-list.webp";
 import pmccaRecords from "../assets/optimized/pmcca-records.webp";
 
-// Add projects here. Leave unknown links null; the UI labels them as unavailable.
-export const projects = [
+// Preserve original project stories, screenshots, and links. Unknown links stay hidden.
+const originalProjects = [
   {
     id: "bitulok-express",
     title: "Bitulok Express",
@@ -25,7 +25,7 @@ export const projects = [
       "Admin and Restaurant web apps are built with Vite; Customer and Rider mobile apps are built with Expo. The backend uses Firebase: Firestore, Cloud Functions, and Hosting.",
     tech: ["Vite", "Expo", "Firebase", "Firestore", "Cloud Functions"],
     liveUrl: null,
-    githubUrl: "https://github.com/CiaoMrnngstr/bitulok-express",
+    githubUrl: null,
     images: [],
   },
   {
@@ -88,3 +88,48 @@ export const projects = [
     ],
   },
 ];
+
+const fitness = {
+  id: "fitness-tracker",
+  title: "Fitness Tracker App",
+  subtitle: "Build a routine. See your progress.",
+  badge: "Personal project",
+  date: "October 2025",
+  role: "Mobile App Developer",
+  categories: ["Mobile"],
+  description: "A mobile fitness app that brings exercise discovery, guided workout challenges, and personal progress into one place. Built to make a daily routine easier to follow.",
+  story: "I developed this personal project in October 2025 using React Native, Node.js, and Firebase Firestore. The app combines an exercise library with custom challenges and progress tracking, so users can plan a workout, follow it, and review their activity.",
+  tech: ["React Native", "Node.js", "Firebase", "Firestore"],
+  liveUrl: null,
+  githubUrl: null,
+  features: [
+    "Upper body, core, lower body, cardio, and full body exercises, with demonstrations and equipment labels.",
+    "Custom challenges by difficulty and body focus, with guided workouts and a live counter.",
+    "Weight history and goals, calories burned, workout totals, streaks, recent workouts, and a BMI calculator.",
+    "Notifications, profile avatars, and light and dark themes.",
+  ],
+  images: [
+    { src: "/images/fitness/home.webp", alt: "Fitness Tracker home dashboard with weekly activity and quick actions", label: "Home", width: 720, height: 1561 },
+    { src: "/images/fitness/exercises.webp", alt: "Fitness Tracker exercise library organized by body area", label: "Exercise library", width: 720, height: 1561 },
+    { src: "/images/fitness/challenge.webp", alt: "Fitness Tracker challenge generator with difficulty and body focus choices", label: "Custom challenges", width: 720, height: 1561 },
+    { src: "/images/fitness/progress.webp", alt: "Fitness Tracker progress screen showing calories, streaks, and weight goals", label: "Progress", width: 720, height: 1561 },
+  ],
+};
+
+const projectDetails = {
+  "bitulok-express": {
+    date: "2026–2027 · In development",
+    role: "Sole Full-Stack Developer",
+    context: "Built for food and goods delivery in Gabaldon, Nueva Ecija, with accounts, menus, checkout, order processing, rider assignment, delivery tracking, and administration. The platform includes cash on delivery and QR Ph payment workflows, with Google Maps, Sender, and Hostinger integrations.",
+    additionalTech: ["React", "React Native", "Node.js", "Firebase Hosting"],
+  },
+  phinma: { date: "2024–2025", role: "Contributor", additionalTech: ["Java", "MySQL"] },
+  pmcca: { date: "2024", role: "Backend & Database Developer", additionalTech: ["MySQL"] },
+  kicks: { date: "First-year project", role: "Frontend Developer" },
+};
+const enriched = originalProjects.map((project) => {
+  const { additionalTech = [], ...details } = projectDetails[project.id];
+  return { ...project, ...details, tech: [...project.tech, ...additionalTech] };
+});
+// Featured capstone first; the remaining dated projects run newest to oldest.
+export const projects = [enriched[0], fitness, enriched[2], enriched[3], enriched[1]];

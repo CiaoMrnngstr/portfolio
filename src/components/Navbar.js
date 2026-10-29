@@ -45,7 +45,7 @@ export default function Navbar({ activeSection }) {
       ?.setAttribute("content", theme === "dark" ? "#0b0e16" : "#f5f7fc");
   }, [theme]);
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 768px)");
+    const desktop = window.matchMedia("(min-width: 1024px)");
     const closeOnDesktop = () => {
       if (desktop.matches) dialog.current?.close();
     };
